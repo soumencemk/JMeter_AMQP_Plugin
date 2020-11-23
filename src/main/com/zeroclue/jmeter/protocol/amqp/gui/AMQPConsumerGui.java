@@ -19,7 +19,7 @@ public class AMQPConsumerGui extends AMQPSamplerGui {
     private final JCheckBox autoAck = new JCheckBox("Auto ACK", true);
     private final JCheckBox readResponse = new JCheckBox("Read Response", AMQPConsumer.DEFAULT_READ_RESPONSE);
     private final JCheckBox useTx = new JCheckBox("Use Transactions?", AMQPConsumer.DEFAULT_USE_TX);
-    private final JLabel soumenLbl = new JLabel("(c) 2020, Soumen Karmakar. All right reserved under Gmbh public licence");
+    private final JLabel soumenLbl = new JLabel("(c) 2020, Soumen Karmakar -- apache public licence");
 
     private JPanel mainPanel;
 

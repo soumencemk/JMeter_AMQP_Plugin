@@ -150,7 +150,7 @@ public class AMQPPublisherGui extends AMQPSamplerGui {
         mainPanel.add(messageId);
         mainPanel.add(headers);
         mainPanel.add(message);
-        mainPanel.add(new JLabel("(c) 2020, Soumen Karmakar. All right reserved under Gmbh public licence"));
+        mainPanel.add(new JLabel("(c) 2020, Soumen Karmakar -- apache public licence"));
     }
 
     /**
