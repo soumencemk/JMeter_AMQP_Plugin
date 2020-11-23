@@ -25,7 +25,7 @@ public abstract class AMQPSamplerGui extends AbstractSamplerGui {
     protected JLabeledTextField virtualHost = new JLabeledTextField("Virtual Host");
     protected JLabeledTextField messageTTL = new JLabeledTextField("Message TTL");
     protected JLabeledTextField messageExpires = new JLabeledTextField("Expires");
-    protected JLabeledChoice exchangeType = new JLabeledChoice("Exchange Type", new String[]{ "direct", "topic", "headers", "fanout"});
+    protected JLabeledChoice exchangeType = new JLabeledChoice("Exchange Type", new String[]{"direct", "topic", "headers", "fanout"});
     private final JCheckBox exchangeDurable = new JCheckBox("Durable?", AMQPSampler.DEFAULT_EXCHANGE_DURABLE);
     private final JCheckBox exchangeAutoDelete = new JCheckBox("Auto Delete?", AMQPSampler.DEFAULT_EXCHANGE_AUTO_DELETE);
     private final JCheckBox queueDurable = new JCheckBox("Durable?", true);
@@ -39,9 +39,9 @@ public abstract class AMQPSamplerGui extends AbstractSamplerGui {
     protected JLabeledTextField username = new JLabeledTextField("Username");
     protected JLabeledTextField password = new JLabeledTextField("Password");
     private final JCheckBox SSL = new JCheckBox("SSL?", false);
+    protected JLabeledTextField HEARTBEAT = new JLabeledTextField("Heartbeat");
 
     private final JLabeledTextField iterations = new JLabeledTextField("Number of samples to Aggregate");
-
 
 
     protected abstract void setMainPanel(JPanel panel);
@@ -78,6 +78,7 @@ public abstract class AMQPSamplerGui extends AbstractSamplerGui {
         username.setText(sampler.getUsername());
         password.setText(sampler.getPassword());
         SSL.setSelected(sampler.connectionSSL());
+        HEARTBEAT.setText(String.valueOf(sampler.getHeartBeat()));
         log.info("AMQPSamplerGui.configure() called");
     }
 
@@ -110,6 +111,7 @@ public abstract class AMQPSamplerGui extends AbstractSamplerGui {
         username.setText("guest");
         password.setText("guest");
         SSL.setSelected(false);
+        HEARTBEAT.setText("");
     }
 
     /**
@@ -144,6 +146,7 @@ public abstract class AMQPSamplerGui extends AbstractSamplerGui {
         sampler.setUsername(username.getText());
         sampler.setPassword(password.getText());
         sampler.setConnectionSSL(SSL.isSelected());
+        sampler.setHeartbeat(Integer.parseInt(HEARTBEAT.getText()));
         log.info("AMQPSamplerGui.modifyTestElement() called, set user/pass to " + username.getText() + "/" + password.getText() + " on sampler " + sampler);
     }
 
@@ -156,7 +159,7 @@ public abstract class AMQPSamplerGui extends AbstractSamplerGui {
 
         mainPanel.add(makeCommonPanel());
 
-        iterations.setPreferredSize(new Dimension(50,25));
+        iterations.setPreferredSize(new Dimension(50, 25));
         mainPanel.add(iterations);
 
         add(mainPanel);
@@ -278,6 +281,10 @@ public abstract class AMQPSamplerGui extends AbstractSamplerGui {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         serverSettings.add(timeout, gridBagConstraints);
+
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 6;
+        serverSettings.add(HEARTBEAT, gridBagConstraints);
 
         gridBagConstraintsCommon.gridx = 1;
         gridBagConstraintsCommon.gridy = 0;
