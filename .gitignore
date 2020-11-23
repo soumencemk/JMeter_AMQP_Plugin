@@ -1,0 +1,15 @@
+.classpath
+.project
+.settings/
+*\.sw[po]
+.DS_Store
+stats/
+target/
+gc.log
+lib/
+/nbproject/private/
+/build/
+/dist/
+/ivy/
+*.iml
+.idea
